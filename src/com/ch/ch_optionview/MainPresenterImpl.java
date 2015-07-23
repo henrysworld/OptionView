@@ -21,6 +21,7 @@ public class MainPresenterImpl implements MainPresenter, OnFinishListener{
 				size = 4;
 				position = 2;
 				view.showItems(size, position);
+				view.hideProgress();
 			}
 		}, 2000);
 	}
@@ -28,7 +29,7 @@ public class MainPresenterImpl implements MainPresenter, OnFinishListener{
 	@Override
 	public void onFinish() {
 		// TODO Auto-generated method stub
-		view.hideProgress();
+		
 	}
 
 	@Override
