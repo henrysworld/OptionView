@@ -19,6 +19,7 @@ public class MainActivity extends Activity implements MainView{
         setContentView(R.layout.activity_main);
         
         initUI();
+        
     }
     
     @Override
