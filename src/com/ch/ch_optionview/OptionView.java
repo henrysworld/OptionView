@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -14,11 +15,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.LayoutParams;
 
+@SuppressLint("NewApi") 
 public class OptionView extends RadioGroup {
 
-	// private int size = 0;
 	private RadioButton[] viewList;
 	private Context context;
+	private ArrayList<String> dataList;
 
 	public OptionView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -29,14 +31,20 @@ public class OptionView extends RadioGroup {
 		super(context);
 		this.context = context;
 	}
+	
 
-	@SuppressLint("NewApi") 
+	/**
+	 * create view
+	 * @author He Chen
+	 * @param size	option size
+	 */
+	@SuppressWarnings("deprecation")
 	public void createView(int size) {
-		ArrayList<String> dataList = new ArrayList<String>();
+		removeAllViews();
+		dataList = new ArrayList<String>();
 		for (int i = 'A'; i < 'Z'; i++) {
 			dataList.add("" + (char) i);
 		}
-
 		viewList = new RadioButton[size];
 		int index = 0;
 		while (index < size) {
@@ -64,13 +72,28 @@ public class OptionView extends RadioGroup {
 		}
 	}
 	
-	
+	/**
+	 * setting which option is checked
+	 * @author He Chen
+	 * @param position which
+	 */
 	public void setCheckedRadioButton(int position){
 		viewList[position-1].setChecked(true);
 	}
 
-	// public void setSize(int size){
-	// this.size = size;
-	// }
-
+	
+	/**
+	 * get checked result
+	 * @return Example:A,B,C,D
+	 */
+	public String getWhichRadioButtonChecked(){
+		String result = "";
+		for(int i = 0; i < viewList.length; i++){
+			if(viewList[i].isChecked()){
+				result = dataList.get(i);
+				break;
+			}
+		}
+		return result;
+	}
 }
